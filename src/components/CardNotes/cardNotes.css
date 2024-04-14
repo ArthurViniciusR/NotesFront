@@ -36,18 +36,20 @@ aside form .input-block input{
     font-size: 14px;
     color: #666;
     border: none;
+    outline: none;
     border-bottom: 2px solid #eee;
 }
 
 aside form .input-block textarea {
     margin-top: 7px;
     width: 100%;
-    height: 200px;
+    height: 150px;
     font-size: 14px;
     color: #666;
     border: none;
     border-bottom: 2px solid #eee;
     background-color: #fff;
+    outline: none;
     resize: none;
 }
 
@@ -63,4 +65,14 @@ aside form button[type=submit]{
     color: #fff;
     cursor: pointer;
 
+}
+
+@media(max-width: 1000px){
+    aside{
+        position: relative;
+    }
+
+    aside form .input-block textarea{
+        height: 100px;
+    }
 }

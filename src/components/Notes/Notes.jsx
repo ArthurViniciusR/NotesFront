@@ -1,20 +1,40 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import axios from 'axios'
+import api from '../../server/api'
+import { AiOutlineDelete, AiOutlineExclamationCircle } from "react-icons/ai";
 import './notes.css'
+import './priority.css'
 
-function Notes() {
+
+function Notes(){
+
+  const [allNotes, setAllnotes] = useState([])
+  
+  useEffect(()=>{
+    async function getAllNotes(){
+      const response = await api.get('/annotations')
+  
+      setAllnotes(response.data)
+    }
+  
+    getAllNotes()
+  } , [allNotes])
+
   return (
     <>
-        <li className="notepad-infos">
+    {allNotes.map(data => (
+        <li className={data.priority ? "notepad-priority" : "notepad-infos"}>
             <div>
-                <strong>Fazer Compras</strong>
-                <div>x</div>
+                <strong>{data.title}</strong>
+                <div><AiOutlineDelete size="24"/></div>
             </div>
 
-            <textarea>
-                Lorem ipsum dolor sit amet. Qui deserunt voluptatem est architecto libero quo saepe impedit ad eius consequatur a laudantium officiis. Ex commodi omnis At soluta nemo id ipsa adipisci.
-            </textarea>
-            <span>!</span>
+            <textarea 
+              defaultValue={data.notes}
+            />
+            <span><AiOutlineExclamationCircle size="24"/></span>
         </li>
+    ))}
     </>
   )
 }
