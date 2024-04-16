@@ -7,6 +7,7 @@ const CardNotes = () => {
 
   const [title, setTitle] = useState("")
   const [notes, setNotes] = useState("")
+  const [selectedValue, setSelectedValue] = useState("all")
 
   async function handleSubmit(e){
     e.preventDefault()
