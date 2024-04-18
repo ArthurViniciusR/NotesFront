@@ -3,7 +3,6 @@ import api from '../../server/api'
 import { AiOutlineDelete, AiOutlineExclamationCircle } from "react-icons/ai";
 import './notes.css'
 import './priority.css'
-import axios from 'axios';
 
 
 function Notes(){
@@ -11,8 +10,7 @@ function Notes(){
   const [allNotes, setAllnotes] = useState([])
   const [changedNote, setChangedNote] = useState("")
 
-  
-  
+
   useEffect(()=>{
     async function getAllNotes(){
       const response = await api.get('/annotations')
@@ -20,18 +18,6 @@ function Notes(){
     }
     getAllNotes()
   } , [allNotes])
-  
-  function handleEdit(e, priority){
-
-    e.style.cursor = "text"
-    e.style.borderRadius = "5px"
-
-    if (priority){
-      e.style.boxShadow = "0 0 5px white"
-    } else {
-      e.style.boxShadow = "0 0 5px gray"
-    }
-  }
 
   async function handleDelete(id){
     const deletedNote = api.delete(`/annotations/${id}`)
@@ -56,6 +42,19 @@ function Notes(){
       })
     }
   }
+
+  function handleEdit(e, priority){
+
+    e.style.cursor = "text"
+    e.style.borderRadius = "5px"
+
+    if (priority){
+      e.style.boxShadow = "0 0 5px white"
+    } else {
+      e.style.boxShadow = "0 0 5px gray"
+    }
+  }
+
 
   return (
     <>

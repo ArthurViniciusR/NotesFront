@@ -1,13 +1,11 @@
 import React, {useState, useEffect} from 'react'
 import api from '../../server/api'
 import './cardNotes.css'
-import RadioButton from '../Radio/RadioButton'
 
 const CardNotes = () => {
 
   const [title, setTitle] = useState("")
   const [notes, setNotes] = useState("")
-  const [selectedValue, setSelectedValue] = useState("all")
 
   async function handleSubmit(e){
     e.preventDefault()
@@ -66,7 +64,6 @@ const CardNotes = () => {
             <button type='submit' id='buttonID'>Salvar</button>
 
             </form>
-            <RadioButton/>
         </aside>
     </>
   )
